@@ -2,6 +2,8 @@ from celery import Celery
 import time
 from flask_socketio import SocketIO
 
+from gevent import monkey
+monkey.patch_all(subprocess=True)
 
 celery=Celery('demo',broker='amqp://')
 
@@ -9,7 +11,7 @@ socketio = SocketIO(message_queue='amqp:///socketio')
 
 
 def send_message(event, namespace, room, message):
-    print message
+    print (message)
     socketio.emit(event,{'msg':message},namespace=namespace,room=room)
 
 @celery.task
