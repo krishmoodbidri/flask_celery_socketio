@@ -41,7 +41,7 @@ def on_room():
 
     room=str(session['uid'])
 
-    print 'join room {}'.format(room)
+    print ('join room {}'.format(room))
 
     join_room(room)
 
